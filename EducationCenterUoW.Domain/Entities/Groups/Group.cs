@@ -4,6 +4,7 @@ using EducationCenterUoW.Domain.Entities.Students;
 using EducationCenterUoW.Domain.Entities.Teachers;
 using EducationCenterUoW.Domain.Enums;
 using EducationCenterUoW.Domain.Localization;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,9 +18,17 @@ namespace EducationCenterUoW.Domain.Entities.Groups
         /// <summary>
         /// Multilanguage names
         /// </summary>
+        [JsonIgnore]
         public string NameUz { get; set; }
+
+        [JsonIgnore]
         public string NameRu { get; set; }
+
+        [JsonIgnore]
         public string NameEn { get; set; }
+
+        [NotMapped]
+        public string Name { get; set; }
 
         public Guid TeacherId { get; set; }
 
