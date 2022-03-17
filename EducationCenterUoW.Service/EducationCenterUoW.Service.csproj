@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="Extensions\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EducationCenterUoW.Data\EducationCenterUoW.Data.csproj" />
+    <ProjectReference Include="..\EducationCenterUoW.Domain\EducationCenterUoW.Domain.csproj" />
   </ItemGroup>
 
 </Project>
