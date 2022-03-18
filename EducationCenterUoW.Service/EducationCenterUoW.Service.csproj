@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EducationCenterUoW.Data\EducationCenterUoW.Data.csproj" />
     <ProjectReference Include="..\EducationCenterUoW.Domain\EducationCenterUoW.Domain.csproj" />
   </ItemGroup>

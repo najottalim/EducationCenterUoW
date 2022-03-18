@@ -1,3 +1,4 @@
+using EducationCenterUoW.Api.Helpers;
 using EducationCenterUoW.Data.Contexts;
 using EducationCenterUoW.Data.IRepositories;
 using EducationCenterUoW.Data.Repositories;
@@ -5,6 +6,7 @@ using EducationCenterUoW.Service.Interfaces;
 using EducationCenterUoW.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -51,6 +53,11 @@ namespace EducationCenterUoW.Api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EducationCenterUoW.Api v1"));
+            }
+
+            if(app.ApplicationServices.GetService<IHttpContextAccessor>() != null)
+            {
+                HttpContextHelper.Accessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
             }
 
             app.UseHttpsRedirection();
