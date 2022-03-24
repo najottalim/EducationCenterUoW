@@ -1,4 +1,5 @@
 ﻿using EducationCenterUoW.Domain.Commons;
+using EducationCenterUoW.Domain.Configurations;
 using EducationCenterUoW.Domain.Entities.Students;
 using EducationCenterUoW.Service.DTOs.Students;
 using EducationCenterUoW.Service.Interfaces;
@@ -28,9 +29,9 @@ namespace EducationCenterUoW.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BaseResponse<IEnumerable<Student>>>> GetAll()
+        public async Task<ActionResult<BaseResponse<IEnumerable<Student>>>> GetAll([FromQuery]PaginationParams @params)
         {
-            var result = await studentService.GetAllAsync();
+            var result = await studentService.GetAllAsync(@params);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }

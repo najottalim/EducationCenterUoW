@@ -1,4 +1,5 @@
 ﻿using EducationCenterUoW.Domain.Commons;
+using EducationCenterUoW.Domain.Configurations;
 using EducationCenterUoW.Domain.Entities.Students;
 using EducationCenterUoW.Service.DTOs.Students;
 using System;
@@ -12,7 +13,7 @@ namespace EducationCenterUoW.Service.Interfaces
     {
         Task<BaseResponse<Student>> CreateAsync(StudentForCreationDto studentDto);
         Task<BaseResponse<Student>> GetAsync(Expression<Func<Student, bool>> expression);
-        Task<BaseResponse<IEnumerable<Student>>> GetAllAsync(Expression<Func<Student, bool>> expression = null);
+        Task<BaseResponse<IEnumerable<Student>>> GetAllAsync(PaginationParams @params, Expression<Func<Student, bool>> expression = null);
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Student, bool>> expression);
         Task<BaseResponse<Student>> UpdateAsync(Guid id, StudentForCreationDto studentDto);
     }

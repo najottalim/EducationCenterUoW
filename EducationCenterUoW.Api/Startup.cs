@@ -1,7 +1,7 @@
-using EducationCenterUoW.Api.Helpers;
 using EducationCenterUoW.Data.Contexts;
 using EducationCenterUoW.Data.IRepositories;
 using EducationCenterUoW.Data.Repositories;
+using EducationCenterUoW.Service.Helpers;
 using EducationCenterUoW.Service.Interfaces;
 using EducationCenterUoW.Service.Services;
 using Microsoft.AspNetCore.Builder;
@@ -32,11 +32,13 @@ namespace EducationCenterUoW.Api
                 options.UseSqlServer(Configuration.GetConnectionString("EducationCenter"));
             });
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EducationCenterUoW.Api", Version = "v1" });
             });
+
+            services.AddHttpContextAccessor();
 
             // custom services
             services.AddScoped<IStudentService, StudentService>();

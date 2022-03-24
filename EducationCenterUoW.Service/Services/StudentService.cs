@@ -1,7 +1,9 @@
 ﻿using EducationCenterUoW.Data.IRepositories;
 using EducationCenterUoW.Domain.Commons;
+using EducationCenterUoW.Domain.Configurations;
 using EducationCenterUoW.Domain.Entities.Students;
 using EducationCenterUoW.Service.DTOs.Students;
+using EducationCenterUoW.Service.Extensions;
 using EducationCenterUoW.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -53,7 +55,6 @@ namespace EducationCenterUoW.Service.Services
 
             var result = await studentRepository.CreateAsync(mappedStudent);
 
-            response.Code = 200;
             response.Data = result;
 
             return response;
@@ -73,20 +74,18 @@ namespace EducationCenterUoW.Service.Services
 
             var result = await studentRepository.UpdateAsync(existStudent);
 
-            response.Code = 200;
             response.Data = true;
 
             return response;
         }
 
-        public async Task<BaseResponse<IEnumerable<Student>>> GetAllAsync(Expression<Func<Student, bool>> expression = null)
+        public async Task<BaseResponse<IEnumerable<Student>>> GetAllAsync(PaginationParams @params, Expression<Func<Student, bool>> expression = null)
         {
             var response = new BaseResponse<IEnumerable<Student>>();
 
             var students = await studentRepository.GetAllAsync(expression);
 
-            response.Code = 200;
-            response.Data = students;
+            response.Data = students.ToPagedList(@params);
 
             return response;
         }
@@ -102,7 +101,6 @@ namespace EducationCenterUoW.Service.Services
                 return response;
             }
 
-            response.Code = 200;
             response.Data = student;
 
             return response;
@@ -139,7 +137,6 @@ namespace EducationCenterUoW.Service.Services
 
             var result = await studentRepository.UpdateAsync(mappedStudent);
 
-            response.Code = 200;
             response.Data = result;
 
             return response;
