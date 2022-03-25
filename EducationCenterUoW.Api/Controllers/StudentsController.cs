@@ -3,6 +3,7 @@ using EducationCenterUoW.Domain.Configurations;
 using EducationCenterUoW.Domain.Entities.Students;
 using EducationCenterUoW.Service.DTOs.Students;
 using EducationCenterUoW.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
