@@ -29,8 +29,10 @@ namespace EducationCenterUoW.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BaseResponse<IEnumerable<Student>>>> GetAll([FromQuery]PaginationParams @params)
+        public async Task<ActionResult<BaseResponse<IEnumerable<Student>>>> GetAll([FromHeader]string muhammadabulloh, [FromQuery]PaginationParams @params)
         {
+            HttpContext.Response.Headers.Add("muhammadabdulloh", "pecheniy olib keling");
+
             var result = await studentService.GetAllAsync(@params);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
