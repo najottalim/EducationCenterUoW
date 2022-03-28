@@ -29,7 +29,7 @@ namespace EducationCenterUoW.Api
         {
             services.AddDbContext<EducationCenterDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("EducationCenter"));
+                options.UseNpgsql(Configuration.GetConnectionString("EducationCenter"));
             });
 
             services.AddControllers().AddNewtonsoftJson();
@@ -57,7 +57,7 @@ namespace EducationCenterUoW.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EducationCenterUoW.Api v1"));
             }
 
-            if(app.ApplicationServices.GetService<IHttpContextAccessor>() != null)
+            if (app.ApplicationServices.GetService<IHttpContextAccessor>() != null)
             {
                 HttpContextHelper.Accessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
             }

@@ -30,9 +30,9 @@ namespace EducationCenterUoW.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BaseResponse<IEnumerable<Student>>>> GetAll([FromHeader]string muhammadabulloh, [FromQuery]PaginationParams @params)
+        public async Task<ActionResult<BaseResponse<IEnumerable<Student>>>> GetAll([FromHeader] string muhammadabulloh, [FromQuery] PaginationParams @params)
         {
-            HttpContext.Response.Headers.Add("muhammadabdulloh", "pecheniy olib keling");
+            //HttpContext.Response.Headers.Add("muhammadabdulloh", "pecheniy olib keling");
 
             var result = await studentService.GetAllAsync(@params);
 
@@ -48,7 +48,7 @@ namespace EducationCenterUoW.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<BaseResponse<Student>>> Update(Guid id, StudentForCreationDto studentDto) 
+        public async Task<ActionResult<BaseResponse<Student>>> Update(Guid id, StudentForCreationDto studentDto)
         {
             var result = await studentService.UpdateAsync(id, studentDto);
 
