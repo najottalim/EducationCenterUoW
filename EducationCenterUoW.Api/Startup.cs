@@ -1,3 +1,4 @@
+using EducationCenterUoW.Api.Extensions;
 using EducationCenterUoW.Data.Contexts;
 using EducationCenterUoW.Data.IRepositories;
 using EducationCenterUoW.Data.Repositories;
@@ -41,10 +42,7 @@ namespace EducationCenterUoW.Api
             services.AddHttpContextAccessor();
 
             // custom services
-            services.AddScoped<IStudentService, StudentService>();
-
-            services.AddScoped<IStudentRepository, StudentRepository>();
-            services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddCustomServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
