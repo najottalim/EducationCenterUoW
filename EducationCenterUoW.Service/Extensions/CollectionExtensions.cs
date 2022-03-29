@@ -12,7 +12,7 @@ namespace EducationCenterUoW.Service.Extensions
         {
             var metaData = new PaginationMetaData(source.Count(), @params);
             var json = JsonConvert.SerializeObject(metaData);
-            
+
             if (HttpContextHelper.ResponseHeaders.Keys.Contains("X-Pagination"))
                 HttpContextHelper.ResponseHeaders.Remove("X-Pagination");
 

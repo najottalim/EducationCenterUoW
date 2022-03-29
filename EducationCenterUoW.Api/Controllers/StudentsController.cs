@@ -3,7 +3,6 @@ using EducationCenterUoW.Domain.Configurations;
 using EducationCenterUoW.Domain.Entities.Students;
 using EducationCenterUoW.Service.DTOs.Students;
 using EducationCenterUoW.Service.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -32,8 +31,6 @@ namespace EducationCenterUoW.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<BaseResponse<IEnumerable<Student>>>> GetAll([FromQuery] PaginationParams @params)
         {
-            //HttpContext.Response.Headers.Add("muhammadabdulloh", "pecheniy olib keling");
-
             var result = await studentService.GetAllAsync(@params);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);

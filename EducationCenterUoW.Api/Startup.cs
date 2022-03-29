@@ -1,10 +1,6 @@
 using EducationCenterUoW.Api.Extensions;
 using EducationCenterUoW.Data.Contexts;
-using EducationCenterUoW.Data.IRepositories;
-using EducationCenterUoW.Data.Repositories;
 using EducationCenterUoW.Service.Helpers;
-using EducationCenterUoW.Service.Interfaces;
-using EducationCenterUoW.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

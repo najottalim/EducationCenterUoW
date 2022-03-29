@@ -7,9 +7,7 @@ using EducationCenterUoW.Service.Extensions;
 using EducationCenterUoW.Service.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EducationCenterUoW.Service.Services
@@ -143,7 +141,7 @@ namespace EducationCenterUoW.Service.Services
             mappedStudent.Update();
 
             var result = await unitOfWork.Students.UpdateAsync(mappedStudent);
-            
+
             await unitOfWork.SaveChangesAsync();
 
             response.Data = result;

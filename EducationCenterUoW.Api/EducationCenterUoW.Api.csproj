@@ -17,4 +17,8 @@
     <ProjectReference Include="..\EducationCenterUoW.Service\EducationCenterUoW.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
 </Project>
