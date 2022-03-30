@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EducationCenterUoW.Data\EducationCenterUoW.Data.csproj" />
     <ProjectReference Include="..\EducationCenterUoW.Domain\EducationCenterUoW.Domain.csproj" />
+    <ProjectReference Include="..\EducationCenterUoW.ViewModels\EducationCenterUoW.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

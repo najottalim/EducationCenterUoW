@@ -1,6 +1,7 @@
 using EducationCenterUoW.Api.Extensions;
 using EducationCenterUoW.Data.Contexts;
 using EducationCenterUoW.Service.Helpers;
+using EducationCenterUoW.Service.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,6 +37,9 @@ namespace EducationCenterUoW.Api
             });
 
             services.AddHttpContextAccessor();
+
+            // Mapper services
+            services.AddAutoMapper(typeof(MappingProfile));
 
             // custom services
             services.AddCustomServices();

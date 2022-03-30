@@ -1,7 +1,9 @@
-﻿using EducationCenterUoW.Data.IRepositories;
+﻿using AutoMapper;
+using EducationCenterUoW.Data.IRepositories;
 using EducationCenterUoW.Domain.Commons;
 using EducationCenterUoW.Domain.Configurations;
 using EducationCenterUoW.Domain.Entities.Students;
+using EducationCenterUoW.Domain.Enums;
 using EducationCenterUoW.Service.DTOs.Students;
 using EducationCenterUoW.Service.Extensions;
 using EducationCenterUoW.Service.Interfaces;
@@ -15,10 +17,12 @@ namespace EducationCenterUoW.Service.Services
     public class StudentService : IStudentService
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public StudentService(IUnitOfWork unitOfWork)
+        public StudentService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
         public async Task<BaseResponse<Student>> CreateAsync(StudentForCreationDto studentDto)
@@ -42,13 +46,7 @@ namespace EducationCenterUoW.Service.Services
             }
 
             // create after checking success
-            var mappedStudent = new Student
-            {
-                FirstName = studentDto.FirstName,
-                LastName = studentDto.LastName,
-                Phone = studentDto.Phone,
-                GroupId = studentDto.GroupId
-            };
+            var mappedStudent = mapper.Map<Student>(studentDto);
 
             var result = await unitOfWork.Students.CreateAsync(mappedStudent);
 
@@ -70,6 +68,7 @@ namespace EducationCenterUoW.Service.Services
                 response.Error = new ErrorResponse(404, "User not found");
                 return response;
             }
+            existStudent.Delete();
 
             var result = await unitOfWork.Students.UpdateAsync(existStudent);
 
@@ -116,7 +115,7 @@ namespace EducationCenterUoW.Service.Services
             var response = new BaseResponse<Student>();
 
             // check for exist student
-            var student = await unitOfWork.Students.GetAsync(p => p.Id == id);
+            var student = await unitOfWork.Students.GetAsync(p => p.Id == id && p.State != ItemState.Deleted);
             if (student is null)
             {
                 response.Error = new ErrorResponse(404, "User not found");
@@ -131,16 +130,13 @@ namespace EducationCenterUoW.Service.Services
                 return response;
             }
 
-            var mappedStudent = new Student
-            {
-                FirstName = student.FirstName,
-                LastName = student.LastName,
-                Phone = student.Phone,
-                GroupId = student.GroupId
-            };
-            mappedStudent.Update();
+            student.FirstName = studentDto.FirstName;
+            student.LastName = studentDto.LastName;
+            student.Phone = studentDto.Phone;
+            student.GroupId = studentDto.GroupId;
+            student.Update();
 
-            var result = await unitOfWork.Students.UpdateAsync(mappedStudent);
+            var result = await unitOfWork.Students.UpdateAsync(student);
 
             await unitOfWork.SaveChangesAsync();
 

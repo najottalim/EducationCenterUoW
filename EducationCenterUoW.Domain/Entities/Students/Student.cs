@@ -1,5 +1,6 @@
 ﻿using EducationCenterUoW.Domain.Commons;
 using EducationCenterUoW.Domain.Enums;
+using EducationCenterUoW.ViewModels.Students;
 using System;
 
 namespace EducationCenterUoW.Domain.Entities.Students
@@ -31,6 +32,17 @@ namespace EducationCenterUoW.Domain.Entities.Students
         public void Delete()
         {
             State = ItemState.Deleted;
+        }
+
+        public static explicit operator Student(StudentForCreationDto v)
+        {
+            return new Student()
+            {
+                FirstName = v.FirstName,
+                LastName = v.LastName,
+                Phone = v.Phone,
+                GroupId = v.GroupId
+            };
         }
     }
 }

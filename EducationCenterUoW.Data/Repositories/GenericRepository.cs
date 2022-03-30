@@ -24,37 +24,21 @@ namespace EducationCenterUoW.Data.Repositories
 
         public async Task<T> CreateAsync(T entity)
         {
-            try
-            {
-                var entry = await dbSet.AddAsync(entity);
+            var entry = await dbSet.AddAsync(entity);
 
-                return entry.Entity;
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                throw;
-            }
+            return entry.Entity;
         }
 
         public async Task<bool> DeleteAsync(Expression<Func<T, bool>> expression)
         {
-            try
-            {
-                var entity = await dbSet.FirstOrDefaultAsync(expression);
+            var entity = await dbSet.FirstOrDefaultAsync(expression);
 
-                if (entity is null)
-                    return false;
+            if (entity is null)
+                return false;
 
-                dbSet.Remove(entity);
+            dbSet.Remove(entity);
 
-                return true;
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                throw;
-            }
+            return true;
         }
 
         public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> expression = null)
@@ -64,31 +48,15 @@ namespace EducationCenterUoW.Data.Repositories
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> expression)
         {
-            try
-            {
-                var entity = await dbSet.FirstOrDefaultAsync(expression);
-                return entity;
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                throw;
-            }
+            var entity = await dbSet.FirstOrDefaultAsync(expression);
+            return entity;
         }
 
         public async Task<T> UpdateAsync(T entity)
         {
-            try
-            {
-                var entry = dbSet.Update(entity);
+            var entry = dbSet.Update(entity);
 
-                return entry.Entity;
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-                throw;
-            }
+            return entry.Entity;
         }
     }
 }
