@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EducationCenterUoW.Service.DTOs.Students
@@ -16,5 +18,7 @@ namespace EducationCenterUoW.Service.DTOs.Students
 
         [Required]
         public Guid GroupId { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }
