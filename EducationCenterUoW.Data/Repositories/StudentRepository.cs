@@ -7,8 +7,8 @@ namespace EducationCenterUoW.Data.Repositories
 {
     public class StudentRepository : GenericRepository<Student>, IStudentRepository
     {
-        public StudentRepository(EducationCenterDbContext dbContext, ILogger logger) 
-            : base(dbContext, logger)
+        public StudentRepository(EducationCenterDbContext dbContext) 
+            : base(dbContext)
         {
         }
     }
