@@ -12,6 +12,7 @@ namespace EducationCenterUoW.Api.Extensions
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IGroupService, GroupService>();
         }
     }
 }
