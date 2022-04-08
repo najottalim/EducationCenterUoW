@@ -5,6 +5,7 @@ using EducationCenterUoW.Domain.Configurations;
 using EducationCenterUoW.Domain.Entities.Groups;
 using EducationCenterUoW.Service.DTOs.Groups;
 using EducationCenterUoW.Service.Extensions;
+using EducationCenterUoW.Service.Helpers;
 using EducationCenterUoW.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,10 @@ namespace EducationCenterUoW.Service.Services
                 response.Error = new ErrorResponse(404, "Group not found");
                 return response;
             }
+
+            // Language init
+            string lang = HttpContextHelper.Language;
+            group.Name = lang == "en" ? group.NameEn : lang == "ru" ? group.NameRu : group.NameUz;
 
             response.Data = group;
 
