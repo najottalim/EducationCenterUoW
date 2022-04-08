@@ -14,12 +14,10 @@ namespace EducationCenterUoW.Data.Repositories
     {
         internal EducationCenterDbContext dbContext;
         internal DbSet<T> dbSet;
-        private readonly ILogger logger;
-        public GenericRepository(EducationCenterDbContext dbContext, ILogger logger)
+        public GenericRepository(EducationCenterDbContext dbContext)
         {
             this.dbContext = dbContext;
             this.dbSet = dbContext.Set<T>();
-            this.logger = logger;
         }
 
         public async Task<T> CreateAsync(T entity)

@@ -12,7 +12,6 @@ namespace EducationCenterUoW.Data.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly EducationCenterDbContext context;
-        private readonly ILogger logger;
         private readonly IConfiguration config;
 
         /// <summary>
@@ -22,22 +21,18 @@ namespace EducationCenterUoW.Data.Repositories
 
         public IGroupRepository Groups { get; private set; }
 
+        public ITeacherRepository Teachers { get; private set; }
+
+        public ICourseRepository Courses { get; private set; }
+
         public UnitOfWork(EducationCenterDbContext context, IConfiguration config)
         {
             this.context = context;
-            this.config = config;
-            this.logger = new LoggerConfiguration()
-                .WriteTo.File
-                (
-                    path: "Logs/logs.txt",
-                    outputTemplate: config.GetSection("Serilog:OutputTemplate").Value,
-                    rollingInterval: RollingInterval.Day,
-                    restrictedToMinimumLevel: LogEventLevel.Information
-                ).CreateLogger();
+            this.config = config;            
 
             // Object initializing for repositories
-            Students = new StudentRepository(context, logger);
-            Groups = new GroupRepository(context, logger);
+            Students = new StudentRepository(context);
+            Groups = new GroupRepository(context);
         }
 
         public void Dispose()
