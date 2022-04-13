@@ -31,7 +31,7 @@ namespace EducationCenterUoW.Api.Controllers
         {
             var result = await groupService.GetAsync(p => p.Id == id);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code.Value, result);
         }
 
         [HttpPost]
@@ -39,7 +39,7 @@ namespace EducationCenterUoW.Api.Controllers
         {
             var result = await groupService.CreateAsync(groupDto);
 
-            return StatusCode(result.Code ?? result.Error.Code.Value, result);
+            return StatusCode(result.Error is null ? result.Code : result.Error.Code.Value, result);
         }
 
     }
